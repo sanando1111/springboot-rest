@@ -9,7 +9,7 @@ import org.springframework.jms.annotation.EnableJms;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
-@EnableWebMvc
+//@EnableWebMvc
 @ComponentScan({"com.example"})
 @EnableJms
 @EnableJpaRepositories("com.example.repository")
