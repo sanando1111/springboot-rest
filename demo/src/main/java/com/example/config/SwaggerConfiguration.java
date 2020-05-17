@@ -13,7 +13,7 @@ public class SwaggerConfiguration {
 	public Docket swaggerConfig()
 
 	{
-		return new Docket(DocumentationType.SWAGGER_2);
+		return  new Docket(DocumentationType.SWAGGER_2);
 		
 	}
 

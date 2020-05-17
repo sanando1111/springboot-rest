@@ -1,22 +1,14 @@
 package com.example.controller;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
 
-import javax.validation.MessageInterpolator;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -69,7 +61,7 @@ public class HelloWorldController {
 
 	@Autowired
 	private CardsService cardsService;
-	
+
 	@Autowired
 	private MessageSource messageSource;
 
@@ -158,23 +150,20 @@ public class HelloWorldController {
 		return ResponseEntity.ok("valid");
 
 	}
-	
-	
-	@GetMapping(path="/hateoas")
-	public HttpEntity<Employee> hateoasLinks()
-	{
-		Employee e=new Employee();
-		e.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(HelloWorldController.class, getAllTaxProducts())).withSelfRel());
+
+	@GetMapping(path = "/hateoas")
+	public HttpEntity<Employee> hateoasLinks() {
+		Employee e = new Employee();
+		e.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(HelloWorldController.class, getAllTaxProducts()))
+				.withSelfRel());
 		return new ResponseEntity(e, HttpStatus.OK);
 	}
-	
-	@GetMapping(path="/i18n/{locale}")
-	public String getInternationalisedValue(@PathVariable Locale locale)
-	{
-		log.info("Received locale:"+locale);
-		return messageSource.getMessage("welcome.message",null, locale);
-		
+
+	@GetMapping(path = "/i18n/{locale}")
+	public String getInternationalisedValue(@PathVariable Locale locale) {
+		log.info("Received locale:" + locale);
+		return messageSource.getMessage("welcome.message", null, locale);
+
 	}
 
-	
 }
